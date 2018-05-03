@@ -1,0 +1,13 @@
+{
+ "_cosubSpecVersion": 2,
+ "Url": "https://langcog.stanford.edu/expts/nosub_example/experiment/nosub_example.html",
+ "Title": "Nosub Example",
+ "Description": "Example experiment for using nosub",
+ "Keywords": "nosub",
+ "Batch": true,
+ "FrameHeight": 650,
+ "AssignmentDuration": "60 minutes",
+ "AutoApprovalDelay": "10 minutes",
+ "Reward": "0",
+ "QualificationRequirements": []
+}

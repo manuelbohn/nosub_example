@@ -19,11 +19,11 @@ library(data.table)
 
 ```{r data}
 
-files <- dir("production-results")
+files <- dir("sandbox-results")
 
 raw <- data.frame()
 for (f in files) {
-  jf <- paste("production-results/",f,sep="")
+  jf <- paste("sandbox-results/",f,sep="")
   jd <- fromJSON(paste(readLines(jf), collapse=""))
   id <- data.frame(workerid = jd$WorkerId, 
                    data = jd$answers$data$data
@@ -34,7 +34,7 @@ for (f in files) {
 data <- melt(setDT(raw), measure = patterns( "^data.condition","^data.trial","^data.agent","^data.leftToy","^data.rightToy","^data.inf","^data.pick","^data.correct")) %>%
   set_colnames(c("id","alltrial","condition","trial","agent","leftObject","rightObject","target","pick","correct")) %>%
   # Retain only toy name from "pick" variable
-  mutate(pick = str_sub(pick,73,str_length(novel.data$pick)-5)) %>% 
+  mutate(pick = str_sub(pick,68,str_length(pick)-4)) %>% 
   arrange(id)
 
 str(data)

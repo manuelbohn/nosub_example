@@ -1,0 +1,59 @@
+{
+ "AssignmentId": "3DHE4R9OCWBKDYOMMQY0ZIEL05IG23",
+ "WorkerId": "58e8b3aba752ad76f980418ded77f969",
+ "HITId": "3TKXBROM5TAVS1UVTXZTVRI27PQJIW",
+ "AssignmentStatus": "Submitted",
+ "AutoApprovalTime": "2018-05-03T18:51:32.000Z",
+ "AcceptTime": "2018-05-03T18:41:05.000Z",
+ "SubmitTime": "2018-05-03T18:41:32.000Z",
+ "answers": {
+  "data": {
+   "trial": [],
+   "agents": [],
+   "agentOrient": [],
+   "rightToy": [],
+   "leftToy": [],
+   "inf": [],
+   "data": [
+    {
+     "condition": "nosub_example",
+     "trial": "train",
+     "agent": "Elephant",
+     "leftToy": "car",
+     "rightToy": "bear",
+     "inf": "left",
+     "pick": "https://langcog.stanford.edu/expts/nosub_example/experiment/images/car.png",
+     "correct": 1
+    },
+    {
+     "condition": "nosub_example",
+     "trial": 1,
+     "agent": "Dog",
+     "leftToy": "t2",
+     "rightToy": "t3",
+     "inf": "left",
+     "pick": "https://langcog.stanford.edu/expts/nosub_example/experiment/images/t2.png",
+     "correct": 1
+    },
+    {
+     "condition": "nosub_example",
+     "trial": 2,
+     "agent": "Bunny",
+     "leftToy": "t4",
+     "rightToy": "t1",
+     "inf": "right",
+     "pick": "https://langcog.stanford.edu/expts/nosub_example/experiment/images/t1.png",
+     "correct": 1
+    }
+   ],
+   "toyPosition": [
+    null,
+    null
+   ],
+   "toyPosition2": [
+    null,
+    null
+   ]
+  }
+ }
+}

@@ -173,11 +173,11 @@ var experiment = {
     toyPosition: [],
     toyPosition2: [],
 
-    // end of the training   
+    // End the training   
     endTraining: function() {
         showSlide("training2");
     },   
-    // end of the experiment 
+    // End the experiment 
     end: function() {
     // Show the finish slide.
         showSlide("finished");
@@ -191,7 +191,7 @@ var experiment = {
             experiment.trial.shift();
             return;
         };
-        // when no more trials are left, end experiment    
+        // When no more trials are left, end experiment    
         if (experiment.trial.length == 0){
             setTimeout(function() {experiment.end() }, 0);
             return;
@@ -204,10 +204,10 @@ var experiment = {
             return;
         };  
     
-        // show agent
+        // Show agent
       showAgent(agents[0],experiment.agentOrient[0][0]);
     
-    // play hello sound and write name of agent
+    // Play hello sound
       if (experiment.agentOrient[0][0] == "straight") { 
           pause("next",1600); 
           sourceSound("sound/"+agents[0]+"_hello.mp3");
@@ -252,7 +252,7 @@ var experiment = {
                 showRightToy2(); 
             };
         };
-        // move on to next phase of exposure
+        // Move on to next phase of exposure
         experiment.agentOrient[0].shift(); 
     },
 
@@ -285,8 +285,10 @@ var experiment = {
                  
                 choiceRightToy("images/"+rightToy[0]+".png"); choiceRightToy2("images/empty.png");   
                 
+                // Highlight objects on the table that the agent turns to
                 $("#choiceToy_l").animate({width: "180px",opacity: '0.3', queue: false, duration: 1000});
                 $("#choiceToy_l").animate({width: "130px",opacity: '1', queue: false, duration: 1000});
+                
                 $("#choiceToy_l2").animate({width: "180px",opacity: '0.3', queue: false, duration: 1000});
                 $("#choiceToy_l2").animate({width: "130px",opacity: '1', queue: false, duration: 1000});
                     
@@ -300,7 +302,7 @@ var experiment = {
                 choiceRightToy("images/"+experiment.toyPosition[0]+".png"); 
                 choiceRightToy2("images/"+experiment.toyPosition.filter(function(x) { return x !== experiment.toyPosition[0]; })+".png");
                 
-                
+                // Highlight objects on the table that the agent turns to
                 $("#choiceToy_r").animate({width: "180px",opacity: '0.3'});
                 $("#choiceToy_r").animate({width: "130px",opacity: '1'});
                 
@@ -310,12 +312,12 @@ var experiment = {
         };
 
       
-    // play choice sound
+    // Play choice sound
     
     sourceSound("sound/"+agents[0]+"_choice.mp3");
     playSound(); 
       
-    // choice can be made by clicking the objects after - possible after 9.5s
+    // Choice can be made by clicking the objects after - possible after 9.5s
         setTimeout(function() {
             if (experiment.trial[0] == "train") {
                 $(".toy_l").bind("click", experiment.eat);
@@ -324,6 +326,7 @@ var experiment = {
             
             } else { 
             
+            // In test trial, only the objects on the table with two objects can be clicked    
                 if (experiment.inf[0] == "left") {
                     $(".toy_l").bind("click", experiment.eat);
                     $(".toy_l2").bind("click", experiment.eat);
@@ -337,14 +340,14 @@ var experiment = {
       
     eat: function(event) {
 
-      showSlide("eat");
+        showSlide("eat");
     
         sourceSound("sound/end.mp3");
-      playSound();
+        playSound();
    
-      showEat(agents[0])
+        showEat(agents[0])
    
-      $("#text").text("Click on the animal to continue")
+        $("#text").text("Click on the animal to continue")
   
       // Correct object
       if (inf[0]=="left") {
@@ -357,29 +360,29 @@ var experiment = {
       var pick = event.target.src
        
         // Code correct: does name of chosen object contain the name of the correct object
-        if (pick.indexOf(corrToy) > -1) {
-            var correct =1
-            } else {
-                var correct = 0
-                };
+      if (pick.indexOf(corrToy) > -1) {
+          var correct =1
+          } else {
+              var correct = 0
+              };
 
       // data to be collected  
-      data = {
-          condition: "nosub_example",
-          trial: trial[0],
-          agent: agents[0],
-          leftToy: leftToy[0],
-          rightToy: rightToy[0],
-          inf: inf[0],
-          pick: pick,
-          correct: correct,
-      };
+        data = {
+            condition: "nosub_example",
+            trial: trial[0],
+            agent: agents[0],
+            leftToy: leftToy[0],
+            rightToy: rightToy[0],
+            inf: inf[0],
+            pick: pick,
+            correct: correct,
+        };
        
-      experiment.data.push(data);
+        experiment.data.push(data);
         
-      $(".agent_eat").bind("click", experiment.newtrial);     
+        $(".agent_eat").bind("click", experiment.newtrial);     
     },
-    
+      
    
     newtrial: function() {
     // Unbind and shift variables between trials    

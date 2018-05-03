@@ -1,0 +1,162 @@
+
+<html>
+
+<head>
+	<title>Learning words from animals</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script src="mmturkey-0.6.js"></script>
+    <link rel="stylesheet" href="nosub_example.css" />
+</head>
+
+<body>
+	<!-- The instructions slide. -->
+    <div class="slide" id="instructions">
+        <div style="width: 500px; margin: 0 auto; text-align: center; background-color: #8C1516; padding: 20px 15px 10px 10px">
+            <img src="images/stanford.png" height="46" width="360" alt="Stanford University">
+		</div>
+        <p id='logo-text'>Example experiment for how to use "nosub".</p>
+        <button id="button" type="button" onClick="this.blur(); showSlide('training');">Press to begin</button>		
+    </div>
+
+<!-- The training slide. -->
+    <div class="slide" id="training">
+        <div align="center" width="500px">
+            <p id='logo-text'>Instructions</p>
+            <table style="width:100%">
+                <tbody>
+                    <tr align="center" height="200px">
+                        <td>
+                        <p class="block-text">
+                        In this experiment, animals will ask for toys located on tables. You can select a toy by clicking on it. Please turn on your volume. Press the button below to start the training.</p>
+                        </td>
+                    </tr>
+                   
+                    <tr align="center" height="200px">
+                         <td>
+                        <startButton type="button" onClick="this.blur(); experiment.next()">My volume is    turned up and I am ready to begin</startButton>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+		
+    <div class="slide" id="training2">
+		<div align="center" width="500px">
+			<table style="width:100%">
+				<tbody>
+					<tr align="center" height="200px">
+						<td>
+                 
+                            <p id='logo-text'>
+                                You finished the training
+                            </p>    
+                            <p class="block-text">
+                                In the experiment, you will encounter new kinds of toys. The animals will name them for you. Try your best to find out which toy they want.
+                            </p>  
+                            <p class="block-text">
+                                Proceed by clicking the button below.
+                            </p> 
+                        </td>
+				
+					</tr>
+					<tr align="center" height="300px">
+						<td>
+           
+                       <startButton type="button" onClick="this.blur(); experiment.next()">Start experiment</startButton>
+						</td>
+                   
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+		 	
+ <!-- main slide. -->   
+    <div class="slide" id="stage"> 
+	
+        <nextButton class ="button" type="button" id="next" onclick=" experiment.next();">Next</nextButton>
+                   
+        <audio id="sound" src = ""></audio>   
+                    
+        <img id="hill" class="hill"  src="images/hill.png">
+                               
+        <img id="toy_l" class="toy_l" src="">
+        <img id="toy_l2" class="toy_l2" src="">
+        <img id="table_l" class="table_l" src="images/table_l.png">
+                
+        <img id="toy_r" class="toy_r" src="">
+        <img id="toy_r2" class="toy_r2" src="">
+        <img id="table_r" class="table_r" src="images/table_r.png">  
+                            
+        <img id="Bunny_straight" class="agent"  src="images/Bunny_straight.png">
+                      
+        <img id="Dog_straight" class="agent"  src="images/Dog_straight.png">
+                              
+        <img id="Elephant_straight" class="agent"  src="images/Elephant_straight.png">
+                            
+    </div>
+
+<!--  choice slide-->
+    
+   <div class="slide" id="choice"> 
+		
+       <img id="hill" class="hill"  src="images/hill.png">
+       
+       <p id="text" class="text">Click on the toy</p> 
+       
+       <img id="choiceToy_l" class="toy_l" src="">
+       <img id="choiceToy_l2" class="toy_l2" src="">
+       <img id="table_l" class="table_l" src="images/table_l.png" width="200px">    
+       
+       <img id="choiceToy_r" class="toy_r" src="">
+       <img id="choiceToy_r2" class="toy_r2" src="">
+       <img id="table_r" class="table_r" src="images/table_r.png" width="200px">
+      
+       <img id="Bunny_choice" class="agent"  src="images/Bunny_straight.png">
+       <img id="Bunny_point_l" class="point_agent_l"  src="images/Bunny_point_l.png">
+       <img id="Bunny_point_r" class="point_agent_r"  src="images/Bunny_point_r.png">
+                    
+                 
+       <img id="Dog_choice" class="agent"  src="images/Dog_straight.png">
+       <img id="Dog_point_l" class="point_agent_l"  src="images/Dog_point_l.png">
+       <img id="Dog_point_r" class="point_agent_r"  src="images/Dog_point_r.png">
+                       
+                            
+       <img id="Elephant_choice" class="agent"  src="images/Elephant_straight.png">
+       <img id="Elephant_point_l" class="point_agent_l"  src="images/Elephant_point_l.png">
+       <img id="Elephant_point_r" class="point_agent_r"  src="images/Elephant_point_r.png">
+                      	
+    </div>
+
+<!--  eat slide-->
+    
+    <div class="slide" id="eat"> 
+	
+       <p id="text" class="text">Click on the animal to continue</p>  
+                        
+       <img id="Bunny_eat" class="agent_eat"  src="images/Bunny_eat.png">   
+                          
+       <img id="Dog_eat" class="agent_eat"  src="images/Dog_eat.png">
+                             
+       <img id="Elephant_eat" class="agent_eat"  src="images/Elephant_eat.png">   
+
+    </div>
+       
+    
+	<!-- The finish slide. -->
+    <div class="slide" id="finished">
+        
+        <p class="block-text">You're finished - thanks for participating</p> 
+        
+        <p class="block-text">
+        In this experiment we wanted to find out if people think that novel words go with things that are less frequent.</p>
+        
+        <p class="block-text">Submitting to Mechanical Turk...</p>
+    </div>
+
+    <script src="nosub_example.js"></script>
+
+    </body>
+
+</html>

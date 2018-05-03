@@ -1,0 +1,41 @@
+---
+title: "Nosub Example"
+author: "Manuel Bohn"
+date: "2 5 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(rjson)
+library(tidyr)
+library(stringr)
+library(dplyr)
+library(data.table)
+
+```
+
+
+```{r data}
+
+files <- dir("production-results")
+
+raw <- data.frame()
+for (f in files) {
+  jf <- paste("production-results/",f,sep="")
+  jd <- fromJSON(paste(readLines(jf), collapse=""))
+  id <- data.frame(workerid = jd$WorkerId, 
+                   data = jd$answers$data$data
+)
+  raw <- bind_rows(raw, id)
+}
+
+data <- melt(setDT(raw), measure = patterns( "^data.condition","^data.trial","^data.agent","^data.leftToy","^data.rightToy","^data.inf","^data.pick","^data.correct")) %>%
+  set_colnames(c("id","alltrial","condition","trial","agent","leftObject","rightObject","target","pick","correct")) %>%
+  # Retain only toy name from "pick" variable
+  mutate(pick = str_sub(pick,73,str_length(novel.data$pick)-5)) %>% 
+  arrange(id)
+
+str(data)
+```

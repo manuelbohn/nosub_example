@@ -38,4 +38,6 @@ data <- melt(setDT(raw), measure = patterns( "^data.condition","^data.trial","^d
   arrange(id)
 
 str(data)
+
+
 ```

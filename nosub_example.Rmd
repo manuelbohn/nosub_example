@@ -1,43 +1,34 @@
 ---
 title: "Nosub Example"
-author: "Manuel Bohn"
-date: "2 5 2018"
+author: "Manuel Bohn & Mike Frank"
+date: "May 5th, 2018"
 output: html_document
 ---
+
+Libraries.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-library(rjson)
+library(jsonlite)
 library(tidyr)
 library(stringr)
 library(dplyr)
-library(data.table)
-
 ```
 
+We iterate through the files, then coerce each json data structure into a data frame, and then we are in good shape for analysis. 
 
 ```{r data}
-
 files <- dir("sandbox-results")
 
-raw <- data.frame()
+raw_data <- data_frame()
 for (f in files) {
   jf <- paste("sandbox-results/",f,sep="")
   jd <- fromJSON(paste(readLines(jf), collapse=""))
-  id <- data.frame(workerid = jd$WorkerId, 
-                   data = jd$answers$data$data
-)
-  raw <- bind_rows(raw, id)
+  id <- as_data_frame(jd$answers$data$data) %>%
+    mutate(workerid = jd$WorkerId)
+  raw_data <- bind_rows(raw_data, id)
 }
 
-data <- melt(setDT(raw), measure = patterns( "^data.condition","^data.trial","^data.agent","^data.leftToy","^data.rightToy","^data.inf","^data.pick","^data.correct")) %>%
-  set_colnames(c("id","alltrial","condition","trial","agent","leftObject","rightObject","target","pick","correct")) %>%
-  # Retain only toy name from "pick" variable
-  mutate(pick = str_sub(pick,68,str_length(pick)-4)) %>% 
-  arrange(id)
-
-str(data)
-
-
+raw_data
 ```
